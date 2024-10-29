@@ -2,10 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Оценка урока</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
+        /* Стили для формы */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -14,24 +13,25 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            height: 100vh;
             padding-top: 50px;
+            min-height: 100vh;
         }
         .container {
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 600px;
+            width: 800px;
+            margin-bottom: 50px;
         }
         h1 {
             text-align: center;
             margin-bottom: 20px;
         }
         h2 {
-            margin-top: 20px;
+            margin-top: 40px;
             margin-bottom: 10px;
-            font-size: 1.2em;
+            font-size: 1.5em;
         }
         .parameter {
             margin-bottom: 25px;
@@ -39,12 +39,14 @@
         label {
             display: block;
             margin-bottom: 5px;
+            font-weight: bold;
         }
         input[type="range"] {
             width: 100%;
         }
         span {
             float: right;
+            font-weight: bold;
         }
         button {
             width: 100%;
@@ -55,10 +57,20 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 30px;
         }
         button:hover {
             background-color: #45a049;
         }
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        /* Стили для отчета */
         .info {
             margin-bottom: 20px;
             background-color: #e8f5e9;
@@ -77,6 +89,7 @@
             border: 1px solid #ddd;
             padding: 10px;
             text-align: left;
+            vertical-align: top;
         }
         .table th {
             background-color: #f0f0f0;
@@ -125,97 +138,196 @@
                 <input type="number" id="studentAge" name="studentAge" min="1" required>
             </div>
 
+            <!-- Приветствие и знакомство -->
             <h2>Приветствие и знакомство</h2>
             <div class="parameter">
                 <label for="confidence">Уверенность:</label>
+                <p>Оцените уверенность ученика во время приветствия и знакомства, ответив на следующие вопросы:</p>
+                <ul>
+                    <li>Ученик уверенно представился?</li>
+                    <li>Ученик открыто отвечал на вопросы?</li>
+                    <li>Ученик выглядел нервным или спокойным?</li>
+                </ul>
                 <input type="range" id="confidence" name="confidence" min="1" max="10" value="5">
                 <span id="confidenceValue">5</span>
             </div>
             <div class="parameter">
                 <label for="selfPresentation">Навык самопрезентации:</label>
+                <p>Оцените навык самопрезентации ученика, учитывая следующие вопросы:</p>
+                <ul>
+                    <li>Ученик эффективно рассказал о себе?</li>
+                    <li>Поделился ли ученик своими увлечениями и хобби?</li>
+                    <li>Выражал ли ученик свои мысли ясно и понятно?</li>
+                </ul>
                 <input type="range" id="selfPresentation" name="selfPresentation" min="1" max="10" value="5">
                 <span id="selfPresentationValue">5</span>
             </div>
 
+            <!-- Что такое гибкие навыки? -->
             <h2>Что такое гибкие навыки?</h2>
             <div class="parameter">
                 <label for="flexibility">Гибкость мышления:</label>
+                <p>Оцените гибкость мышления ученика, опираясь на следующие вопросы:</p>
+                <ul>
+                    <li>Выбирал ли ученик важные для него гибкие навыки и объяснял, почему они важны?</li>
+                    <li>Предоставлял ли ученик обоснованные причины своего выбора?</li>
+                    <li>Показал ли ученик способность гибко мыслить о значимости различных навыков?</li>
+                </ul>
                 <input type="range" id="flexibility" name="flexibility" min="1" max="10" value="5">
                 <span id="flexibilityValue">5</span>
             </div>
             <div class="parameter">
                 <label for="associativeThinking">Уровень ассоциативного мышления:</label>
+                <p>Оцените уровень ассоциативного мышления ученика:</p>
+                <ul>
+                    <li>Мог ли ученик проводить аналогии между разными навыками?</li>
+                    <li>Понимал ли ученик, как различные навыки связаны между собой?</li>
+                    <li>Проявлял ли ученик творческий подход в обсуждении навыков?</li>
+                </ul>
                 <input type="range" id="associativeThinking" name="associativeThinking" min="1" max="10" value="5">
                 <span id="associativeThinkingValue">5</span>
             </div>
 
+            <!-- Оценка своих навыков -->
             <h2>Оценка своих навыков</h2>
             <div class="parameter">
                 <label for="selfPresentation2">Навык самопрезентации:</label>
+                <p>Оцените навык самопрезентации ученика при обсуждении своих друзей и социальных взаимодействий:</p>
+                <ul>
+                    <li>Как ученик описывал своих друзей?</li>
+                    <li>Открыто ли ученик рассказывал о своих дружеских отношениях?</li>
+                    <li>Был ли ученик комфортен в обсуждении социальных взаимодействий?</li>
+                </ul>
                 <input type="range" id="selfPresentation2" name="selfPresentation2" min="1" max="10" value="5">
                 <span id="selfPresentation2Value">5</span>
             </div>
             <div class="parameter">
                 <label for="confidence2">Уверенность:</label>
+                <p>Оцените уверенность ученика в ходе самооценки своих навыков:</p>
+                <ul>
+                    <li>Ученик уверенно оценивал свои навыки?</li>
+                    <li>Был ли ученик откровенен в своих оценках?</li>
+                    <li>Проявлял ли ученик самокритичность и понимание своих сильных и слабых сторон?</li>
+                </ul>
                 <input type="range" id="confidence2" name="confidence2" min="1" max="10" value="5">
                 <span id="confidence2Value">5</span>
             </div>
 
+            <!-- Дверь 1: How do you make friends -->
             <h2>Дверь 1: How do you make friends</h2>
             <div class="parameter">
                 <label for="activity">Активность:</label>
+                <p>Оцените активность ученика во время выполнения задания "Мост дружбы":</p>
+                <ul>
+                    <li>Участвовал ли ученик активно в задании?</li>
+                    <li>Проявлял ли инициативу при выборе "кирпичиков" для моста?</li>
+                    <li>Был ли ученик вовлечен в обсуждение значимости каждого качества?</li>
+                </ul>
                 <input type="range" id="activity" name="activity" min="1" max="10" value="5">
                 <span id="activityValue">5</span>
             </div>
             <div class="parameter">
                 <label for="observation">Наблюдательность:</label>
+                <p>Оцените наблюдательность ученика в процессе задания:</p>
+                <ul>
+                    <li>Замечал ли ученик детали и особенности каждого качества?</li>
+                    <li>Мог ли ученик подобрать подходящие качества для построения моста?</li>
+                    <li>Обращал ли внимание на негативные качества и понимал их влияние на дружбу?</li>
+                </ul>
                 <input type="range" id="observation" name="observation" min="1" max="10" value="5">
                 <span id="observationValue">5</span>
             </div>
 
+            <!-- Дверь 2: Conflicts -->
             <h2>Дверь 2: Conflicts</h2>
             <div class="parameter">
                 <label for="listening2">Умение слушать других:</label>
+                <p>Оцените умение ученика слушать и понимать других при обсуждении конфликтов:</p>
+                <ul>
+                    <li>Внимательно ли ученик слушал ситуации и вопросы?</li>
+                    <li>Проявлял ли ученик эмпатию к персонажам ситуаций?</li>
+                    <li>Учитывал ли мнения и чувства других при формулировании ответов?</li>
+                </ul>
                 <input type="range" id="listening2" name="listening2" min="1" max="10" value="5">
                 <span id="listening2Value">5</span>
             </div>
             <div class="parameter">
                 <label for="flexibility2">Гибкость мышления:</label>
+                <p>Оцените гибкость мышления ученика в решении конфликтных ситуаций:</p>
+                <ul>
+                    <li>Мог ли ученик предложить нестандартные решения для разрешения конфликтов?</li>
+                    <li>Готов ли был ученик рассматривать альтернативные точки зрения?</li>
+                    <li>Проявлял ли способность адаптировать свои ответы в зависимости от ситуации?</li>
+                </ul>
                 <input type="range" id="flexibility2" name="flexibility2" min="1" max="10" value="5">
                 <span id="flexibility2Value">5</span>
             </div>
 
+            <!-- Дверь 3: Criticism -->
             <h2>Дверь 3: Criticism</h2>
             <div class="parameter">
                 <label for="listening3">Умение слушать других:</label>
+                <p>Оцените умение ученика слушать при обсуждении критики и дружеских советов:</p>
+                <ul>
+                    <li>Внимательно ли ученик слушал объяснения разницы между дружеским советом и критикой?</li>
+                    <li>Понимал ли ученик, когда стоит давать советы, а когда нет?</li>
+                    <li>Проявлял ли способность воспринимать информацию и применять ее в заданиях?</li>
+                </ul>
                 <input type="range" id="listening3" name="listening3" min="1" max="10" value="5">
                 <span id="listening3Value">5</span>
             </div>
             <div class="parameter">
                 <label for="associativeThinking2">Уровень ассоциативного мышления:</label>
+                <p>Оцените уровень ассоциативного мышления ученика при различении дружеского совета и критики:</p>
+                <ul>
+                    <li>Мог ли ученик проводить параллели между различными ситуациями?</li>
+                    <li>Понимал ли ученик последствия критики и дружеских советов для отношений?</li>
+                    <li>Предлагал ли ученик свои примеры и аналогии?</li>
+                </ul>
                 <input type="range" id="associativeThinking2" name="associativeThinking2" min="1" max="10" value="5">
                 <span id="associativeThinking2Value">5</span>
             </div>
 
+            <!-- Повторная самооценка навыков -->
             <h2>Повторная самооценка навыков</h2>
             <div class="parameter">
                 <label for="activity2">Активность:</label>
+                <p>Оцените активность ученика во время повторной самооценки навыков:</p>
+                <ul>
+                    <li>Был ли ученик заинтересован в обсуждении изменений своих навыков?</li>
+                    <li>Проявлял ли инициативу в выражении своих мыслей?</li>
+                    <li>Отмечал ли конкретные области прогресса или трудностей?</li>
+                </ul>
                 <input type="range" id="activity2" name="activity2" min="1" max="10" value="5">
                 <span id="activity2Value">5</span>
             </div>
             <div class="parameter">
                 <label for="confidence3">Уверенность:</label>
+                <p>Оцените уверенность ученика в оценке своего прогресса:</p>
+                <ul>
+                    <li>Ученик уверенно сравнивал свои оценки до и после урока?</li>
+                    <li>Проявлял ли ученик положительное отношение к своему прогрессу?</li>
+                    <li>Выражал ли желание продолжать развивать свои навыки?</li>
+                </ul>
                 <input type="range" id="confidence3" name="confidence3" min="1" max="10" value="5">
                 <span id="confidence3Value">5</span>
             </div>
 
+            <!-- Завершение урока + колесо навыков -->
             <h2>Завершение урока + колесо навыков</h2>
             <div class="parameter">
                 <label for="flexibility3">Гибкость мышления:</label>
+                <p>Оцените гибкость мышления ученика при обсуждении выпавшего навыка на колесе:</p>
+                <ul>
+                    <li>Мог ли ученик объяснить, как выбранный софт скилл помогает в дружбе?</li>
+                    <li>Приводил ли ученик примеры из своего опыта?</li>
+                    <li>Проявлял ли ученик интерес к различным навыкам и их значению?</li>
+                </ul>
                 <input type="range" id="flexibility3" name="flexibility3" min="1" max="10" value="5">
                 <span id="flexibility3Value">5</span>
             </div>
 
+            <!-- Кнопка "Готово" -->
             <button type="button" id="submitButton">Готово</button>
         </form>
     </div>
@@ -223,6 +335,7 @@
     <!-- script.js -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Обработчик для ползунков
             const sliders = document.querySelectorAll("input[type='range']");
             sliders.forEach(slider => {
                 slider.addEventListener("input", function () {
@@ -230,11 +343,13 @@
                 });
             });
 
+            // Обработчик для кнопки "Готово"
             document.getElementById("submitButton").addEventListener("click", function () {
                 const studentName = document.getElementById("studentName").value;
                 const studentAge = document.getElementById("studentAge").value;
                 const currentDate = new Date().toLocaleDateString();
 
+                // Собираем результаты
                 const results = {
                     "Имя ученика": studentName,
                     "Возраст ученика": studentAge,
@@ -281,14 +396,13 @@
                     }
                 }
 
+                // Генерируем страницу с результатами
                 let resultPage = `
                     <!DOCTYPE html>
                     <html lang="ru">
                     <head>
                         <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Результаты оценки</title>
-                        <link rel="stylesheet" href="styles.css">
                         <style>
                             body {
                                 font-family: Arial, sans-serif;
@@ -298,8 +412,8 @@
                                 display: flex;
                                 justify-content: center;
                                 align-items: flex-start;
-                                height: 100vh;
                                 padding-top: 50px;
+                                min-height: 100vh;
                             }
                             .container {
                                 background-color: #fff;
