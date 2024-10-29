@@ -1,151 +1,419 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Alexander</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Draco is free PSD &amp; HTML template by @afnizarnur">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/kube.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/custom.min.css" />
-    <link rel="shortcut icon" href="img/favicon.png" />
-	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<style>
-		.intro h1:before {
-			/* Edit this with your name or anything else */
-			content: 'Alex';
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценка урока</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding-top: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .parameter {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        span {
+            float: right;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .info {
+            margin-bottom: 20px;
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f0f0f0;
+        }
+        .progress-bar {
+            height: 20px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            position: absolute;
+        }
+        .progress-fill.low {
+            background-color: #ff6f61;
+        }
+        .progress-fill.medium {
+            background-color: #ffeb3b;
+        }
+        .progress-fill.high {
+            background-color: #81c784;
+        }
+    </style>
 </head>
 <body>
-	<!-- Navigation -->
-	<div class="main-nav">
-		<div class="container">
-			<header class="group top-nav">
-				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
-				    <span class="logo">DRACO</span>
-				</div>
-			    <nav id="navbar-1" class="navbar item-nav">
-				    <ul>
-				        <li class="active"><a href="#about">About</a></li>
-				        <li><a href="#experiences">Experiences</a></li>
-				        <li><a href="#achievements">Achievements</a></li>
-				        <li><a href="#skills">Skills</a></li>
-				    </ul>
-				</nav>
-			</header>
-		</div>
-	</div>
+    <div class="container">
+        <h1>Оценка урока</h1>
+        <form id="evaluationForm">
+            <div class="parameter">
+                <label for="studentName">Имя ученика:</label>
+                <input type="text" id="studentName" name="studentName" required>
+            </div>
+            <div class="parameter">
+                <label for="studentAge">Возраст ученика:</label>
+                <input type="number" id="studentAge" name="studentAge" min="1" required>
+            </div>
 
-	<!-- Introduction -->
-	<div class="intro section" id="about">
-		<div class="container">
-			<p>Hi, I’m Alexander Vasilyev</p>
-			<div class="units-row units-split wrap">
-				<div class="unit-20">
-					<img src="img/Alex.png" alt="Avatar">
-				</div>
-				<div class="unit-80">
-					<h1>I live in<br><span id="typed"></span></h1>
-				</div>
-				<p>
-					«The more experienced the programmer, the more he is aware of the paucity of his knowledge and skills».
-				</p>
-			</div>
-		</div>
-	</div>
+            <h2>Приветствие и знакомство</h2>
+            <div class="parameter">
+                <label for="confidence">Уверенность:</label>
+                <input type="range" id="confidence" name="confidence" min="1" max="10" value="5">
+                <span id="confidenceValue">5</span>
+            </div>
+            <div class="parameter">
+                <label for="selfPresentation">Навык самопрезентации:</label>
+                <input type="range" id="selfPresentation" name="selfPresentation" min="1" max="10" value="5">
+                <span id="selfPresentationValue">5</span>
+            </div>
 
-	<!-- Work Experience -->
-	<div class="work section second" id="experiences">
-		<div class="container">
-			<h1>Work<br>Experiences</h1>
-			<ul class="work-list">
-				<li>My GitHub</li>
-				<li><a href="https://github.com/alexandergm">github.com/alexandergm</a></li>
-				<li></li>
-			</ul>
-			<ul class="work-list">
-				<li>2018-2022</li>
-				<li><a href="#">Same Gev Dudios</a></li>
-				<li>C# Programmer, Game Designer</li>
-			</ul>
-			<ul class="work-list">
-				<li>2020-2022</li>
-				<li><a href="#">Kodland</a></li>
-				<li>C# Teacher</li>
-			</ul>
-			<ul class="work-list">
-				<li>2021-2022</li>
-				<li><a href="#">Kodland</a></li>
-				<li>Unity and Roblox course Methodologist</li>
-			</ul>
-			
-		</div>
-	</div>
+            <h2>Что такое гибкие навыки?</h2>
+            <div class="parameter">
+                <label for="listening">Умение слушать других:</label>
+                <input type="range" id="listening" name="listening" min="1" max="10" value="5">
+                <span id="listeningValue">5</span>
+            </div>
+            <div class="parameter">
+                <label for="selfPresentation2">Навык самопрезентации:</label>
+                <input type="range" id="selfPresentation2" name="selfPresentation2" min="1" max="10" value="5">
+                <span id="selfPresentation2Value">5</span>
+            </div>
 
-	<!-- Award & Achievements -->
-	<div class="award section second" id="achievements">
-		<div class="container">
-			<h1>Award &amp;<br>Achievements</h1>
-			<ul class="award-list list-flat">
-				<li>January 2021</li>
-				<li>Took second place at the Geekbrains hackathon</li>
-			</ul>			
-		</div>
-	</div>
+            <h2>Оценка своих навыков</h2>
+            <div class="parameter">
+                <label for="associativeThinking">Уровень ассоциативного мышления:</label>
+                <input type="range" id="associativeThinking" name="associativeThinking" min="1" max="10" value="5">
+                <span id="associativeThinkingValue">5</span>
+            </div>
+            <div class="parameter">
+                <label for="confidence2">Уверенность:</label>
+                <input type="range" id="confidence2" name="confidence2" min="1" max="10" value="5">
+                <span id="confidence2Value">5</span>
+            </div>
 
-	<!-- Technical Skills -->
-	<div class="skills section second" id="skills">
-		<div class="container">
-			<h1>Technical<br>Skills</h1>
-			<ul class="skill-list list-flat">
-				<li>Web Technology</li>
-				<li>HTML / CSS</li>
-			</ul>
-			<ul class="skill-list list-flat">
-				<li>Game Dev</li>
-				<li>C# / .Net / Unity / Lua / Roblox Studio</li>
-			</ul>			
-		</div>
-	</div>
+            <h2>Дверь 1: How do you make friends</h2>
+            <div class="parameter">
+                <label for="selfPresentation3">Навык самопрезентации:</label>
+                <input type="range" id="selfPresentation3" name="selfPresentation3" min="1" max="10" value="5">
+                <span id="selfPresentation3Value">5</span>
+            </div>
+            <div class="parameter">
+                <label for="associativeThinking2">Уровень ассоциативного мышления:</label>
+                <input type="range" id="associativeThinking2" name="associativeThinking2" min="1" max="10" value="5">
+                <span id="associativeThinking2Value">5</span>
+            </div>
 
-	<!-- Quote -->
-	<div class="quote">
-		<div class="container text-centered">
-			<h1> "Before you start a pair programming session, remove all sharp objects from the room" Brendan Eich.</h1>
-		</div>
-	</div>
+            <h2>Дверь 2: Conflicts</h2>
+            <div class="parameter">
+                <label for="listening2">Умение слушать других:</label>
+                <input type="range" id="listening2" name="listening2" min="1" max="10" value="5">
+                <span id="listening2Value">5</span>
+            </div>
+            <div class="parameter">
+                <label for="confidence3">Уверенность:</label>
+                <input type="range" id="confidence3" name="confidence3" min="1" max="10" value="5">
+                <span id="confidence3Value">5</span>
+            </div>
 
-	<footer>
-		<div class="container">
-			<div class="units-row">
-			    <div class="unit-50">
-			    	<p>Handcrafted by AlexanderOoGM</p>
-			    </div>
-			    <div class="unit-50">
-					<ul class="social list-flat right">
-						<li><a href="https://t.me/AlexanerGM"><i class="fa fa-send"></i></a></li>						
-						<li><a href="https://play.google.com/store/apps/developer?id=Same+Gev+Dudios"><i class="fa fa-dribbble"></i></a></li>						
-					</ul>
-			    </div>
-			</div>
-		</div>
-	</footer>
+            <h2>Дверь 3: Criticism</h2>
+            <div class="parameter">
+                <label for="observation">Наблюдательность:</label>
+                <input type="range" id="observation" name="observation" min="1" max="10" value="5">
+                <span id="observationValue">5</span>
+            </div>
+            <div class="parameter">
+                <label for="associativeThinking3">Уровень ассоциативного мышления:</label>
+                <input type="range" id="associativeThinking3" name="associativeThinking3" min="1" max="10" value="5">
+                <span id="associativeThinking3Value">5</span>
+            </div>
 
-	<!-- Javascript -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/typed.min.js"></script>
-    <script src="js/kube.min.js"></script>
-    <script src="js/site.js"></script>
+            <h2>Повторная самооценка навыков</h2>
+            <div class="parameter">
+                <label for="confidence4">Уверенность:</label>
+                <input type="range" id="confidence4" name="confidence4" min="1" max="10" value="5">
+                <span id="confidence4Value">5</span>
+            </div>
+            <div class="parameter">
+                <label for="listening3">Умение слушать других:</label>
+                <input type="range" id="listening3" name="listening3" min="1" max="10" value="5">
+                <span id="listening3Value">5</span>
+            </div>
+
+            <h2>Завершение урока + колесо навыков</h2>
+            <div class="parameter">
+                <label for="wheelSkill">Наблюдательность:</label>
+                <input type="range" id="wheelSkill" name="wheelSkill" min="1" max="10" value="5">
+                <span id="wheelSkillValue">5</span>
+            </div>
+
+            <button type="button" id="submitButton">Готово</button>
+        </form>
+    </div>
+
+    <!-- script.js -->
     <script>
-		function newTyped(){}$(function(){$("#typed").typed({
-		// Change to edit type effect
-		strings: ["far northern sky", "your galaxy", "everywhere"],
+        document.addEventListener("DOMContentLoaded", function () {
+            const sliders = document.querySelectorAll("input[type='range']");
+            sliders.forEach(slider => {
+                slider.addEventListener("input", function () {
+                    document.getElementById(slider.id + "Value").textContent = slider.value;
+                });
+            });
 
-		typeSpeed:90,backDelay:700,contentType:"html",loop:!0,resetCallback:function(){newTyped()}}),$(".reset").click(function(){$("#typed").typed("reset")})});
+            document.getElementById("submitButton").addEventListener("click", function () {
+                const studentName = document.getElementById("studentName").value;
+                const studentAge = document.getElementById("studentAge").value;
+                const currentDate = new Date().toLocaleDateString();
+
+                const results = {
+                    "Имя ученика": studentName,
+                    "Возраст ученика": studentAge,
+                    "Дата занятия": currentDate,
+                    "Уверенность": [
+                        parseInt(document.getElementById("confidence").value),
+                        parseInt(document.getElementById("confidence2").value),
+                        parseInt(document.getElementById("confidence3").value),
+                        parseInt(document.getElementById("confidence4").value)
+                    ],
+                    "Навык самопрезентации": [
+                        parseInt(document.getElementById("selfPresentation").value),
+                        parseInt(document.getElementById("selfPresentation2").value),
+                        parseInt(document.getElementById("selfPresentation3").value)
+                    ],
+                    "Умение слушать других": [
+                        parseInt(document.getElementById("listening").value),
+                        parseInt(document.getElementById("listening2").value),
+                        parseInt(document.getElementById("listening3").value)
+                    ],
+                    "Уровень ассоциативного мышления": [
+                        parseInt(document.getElementById("associativeThinking").value),
+                        parseInt(document.getElementById("associativeThinking2").value),
+                        parseInt(document.getElementById("associativeThinking3").value)
+                    ],
+                    "Наблюдательность": [
+                        parseInt(document.getElementById("observation").value),
+                        parseInt(document.getElementById("wheelSkill").value)
+                    ]
+                };
+
+                const averages = {};
+                for (let key in results) {
+                    if (Array.isArray(results[key])) {
+                        const sum = results[key].reduce((a, b) => a + b, 0);
+                        const avg = Math.round((sum / results[key].length) * 10);
+                        averages[key] = avg;
+                    } else {
+                        averages[key] = results[key];
+                    }
+                }
+
+                let resultPage = `
+                    <!DOCTYPE html>
+                    <html lang="ru">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Результаты оценки</title>
+                        <link rel="stylesheet" href="styles.css">
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #f4f4f4;
+                                margin: 0;
+                                padding: 0;
+                                display: flex;
+                                justify-content: center;
+                                align-items: flex-start;
+                                height: 100vh;
+                                padding-top: 50px;
+                            }
+                            .container {
+                                background-color: #fff;
+                                padding: 40px;
+                                border-radius: 10px;
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                width: 600px;
+                            }
+                            h1 {
+                                text-align: center;
+                                margin-bottom: 20px;
+                            }
+                            .info {
+                                margin-bottom: 20px;
+                                background-color: #e8f5e9;
+                                padding: 15px;
+                                border-radius: 5px;
+                            }
+                            .info p {
+                                margin: 5px 0;
+                            }
+                            .table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-top: 20px;
+                            }
+                            .table th, .table td {
+                                border: 1px solid #ddd;
+                                padding: 10px;
+                                text-align: left;
+                            }
+                            .table th {
+                                background-color: #f0f0f0;
+                            }
+                            .progress-bar {
+                                height: 20px;
+                                border-radius: 5px;
+                                background-color: #f0f0f0;
+                                position: relative;
+                            }
+                            .progress-fill {
+                                height: 100%;
+                                border-radius: 5px;
+                                position: absolute;
+                            }
+                            .progress-fill.low {
+                                background-color: #ff6f61;
+                            }
+                            .progress-fill.medium {
+                                background-color: #ffeb3b;
+                            }
+                            .progress-fill.high {
+                                background-color: #81c784;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <h1>Диагностика</h1>
+                            <div class="info">
+                                <p><strong>Имя ученика:</strong> ${averages["Имя ученика"]}</p>
+                                <p><strong>Возраст ученика:</strong> ${averages["Возраст ученика"]}</p>
+                                <p><strong>Дата занятия:</strong> ${averages["Дата занятия"]}</p>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Оцениваемые параметры</th>
+                                        <th>Уровень развития (в %)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Уверенность</td>
+                                        <td>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill ${averages["Уверенность"] < 50 ? 'low' : averages["Уверенность"] < 75 ? 'medium' : 'high'}" style="width: ${averages["Уверенность"]}%;"></div>
+                                            </div>
+                                            ${averages["Уверенность"]}%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Навык самопрезентации</td>
+                                        <td>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill ${averages["Навык самопрезентации"] < 50 ? 'low' : averages["Навык самопрезентации"] < 75 ? 'medium' : 'high'}" style="width: ${averages["Навык самопрезентации"]}%;"></div>
+                                            </div>
+                                            ${averages["Навык самопрезентации"]}%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Умение слушать других</td>
+                                        <td>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill ${averages["Умение слушать других"] < 50 ? 'low' : averages["Умение слушать других"] < 75 ? 'medium' : 'high'}" style="width: ${averages["Умение слушать других"]}%;"></div>
+                                            </div>
+                                            ${averages["Умение слушать других"]}%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Уровень ассоциативного мышления</td>
+                                        <td>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill ${averages["Уровень ассоциативного мышления"] < 50 ? 'low' : averages["Уровень ассоциативного мышления"] < 75 ? 'medium' : 'high'}" style="width: ${averages["Уровень ассоциативного мышления"]}%;"></div>
+                                            </div>
+                                            ${averages["Уровень ассоциативного мышления"]}%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Наблюдательность</td>
+                                        <td>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill ${averages["Наблюдательность"] < 50 ? 'low' : averages["Наблюдательность"] < 75 ? 'medium' : 'high'}" style="width: ${averages["Наблюдательность"]}%;"></div>
+                                            </div>
+                                            ${averages["Наблюдательность"]}%
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </body>
+                    </html>
+                `;
+                const newWindow = window.open();
+                newWindow.document.write(resultPage);
+            });
+        });
     </script>
 </body>
 </html>
