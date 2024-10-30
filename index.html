@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Оценка урока</title>
     <style>
-        /* Стили для формы и отчёта */
+        /* Стили для формы и отчета */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -20,6 +20,8 @@
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
+            /* Обновлено: Добавлен синий бордер */
+            border: 2px solid #5988ff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 800px;
             margin-bottom: 50px;
@@ -27,11 +29,15 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            /* Обновлено: Цвет заголовка */
+            color: #5988ff;
         }
         h2 {
             margin-top: 40px;
             margin-bottom: 10px;
             font-size: 1.5em;
+            /* Обновлено: Цвет подзаголовка */
+            color: #5988ff;
         }
         .parameter {
             margin-bottom: 25px;
@@ -40,6 +46,8 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            /* Обновлено: Цвет метки */
+            color: #5988ff;
         }
         input[type="range"] {
             width: 100%;
@@ -49,15 +57,20 @@
             padding: 8px;
             margin-top: 5px;
             box-sizing: border-box;
+            /* Обновлено: Граница поля ввода */
+            border: 1px solid #5988ff;
+            border-radius: 5px;
         }
         span {
             float: right;
             font-weight: bold;
+            /* Обновлено: Цвет значения ползунка */
+            color: #5988ff;
         }
         button {
             width: 100%;
             padding: 15px;
-            background-color: #4CAF50;
+            background-color: #5988ff;
             color: white;
             border: none;
             border-radius: 5px;
@@ -66,7 +79,7 @@
             margin-top: 30px;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #4a78d0;
         }
         ul {
             margin-top: 10px;
@@ -79,12 +92,20 @@
         /* Стили для отчета */
         .info {
             margin-bottom: 20px;
-            background-color: #e8f5e9;
+            /* Обновлено: Фон информационного блока */
+            background-color: #d6ff6b;
             padding: 15px;
             border-radius: 5px;
         }
         .info p {
             margin: 5px 0;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 200px;
         }
         .summary-table {
             width: 100%;
@@ -98,7 +119,9 @@
             vertical-align: middle;
         }
         .summary-table th {
-            background-color: #f0f0f0;
+            /* Обновлено: Фон заголовков таблицы */
+            background-color: #5988ff;
+            color: white;
         }
         .summary-slider {
             width: 100%;
@@ -118,7 +141,7 @@
             height: 16px;
             border-radius: 50%;
             background-color: #ffffff;
-            border: 2px solid #4CAF50;
+            border: 2px solid #5988ff;
             cursor: pointer;
             position: relative;
             z-index: 1;
@@ -128,7 +151,7 @@
             height: 16px;
             border-radius: 50%;
             background-color: #ffffff;
-            border: 2px solid #4CAF50;
+            border: 2px solid #5988ff;
             cursor: pointer;
             position: relative;
             z-index: 1;
@@ -155,19 +178,24 @@
             vertical-align: top;
         }
         .table th {
-            background-color: #f0f0f0;
+            /* Обновлено: Фон заголовков таблицы */
+            background-color: #5988ff;
+            color: white;
         }
         .progress-bar {
             height: 20px;
             border-radius: 5px;
             background-color: #f0f0f0;
-            position: relative;
+            /* position: relative; */ /* Удалено */
             margin-bottom: 5px;
+            overflow: hidden; /* Добавлено для предотвращения выхода заполнения за пределы */
         }
         .progress-fill {
             height: 100%;
             border-radius: 5px;
-            position: absolute;
+            /* position: absolute; */ /* Удалено */
+            width: 0%; /* Установлено по умолчанию */
+            transition: width 0.5s ease; /* Плавное изменение ширины */
         }
         .progress-fill.low {
             background-color: #ff6f61;
@@ -183,9 +211,25 @@
         }
         .explanation h3 {
             margin-bottom: 10px;
+            /* Обновлено: Цвет подзаголовков */
+            color: #5988ff;
         }
         .explanation p {
             margin: 5px 0;
+        }
+
+        /* Медиазапросы для адаптивности */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+            .summary-slider {
+                height: 6px;
+            }
+            .progress-bar {
+                height: 15px;
+            }
         }
     </style>
 </head>
@@ -205,190 +249,49 @@
             <!-- Приветствие и знакомство -->
             <h2>Приветствие и знакомство</h2>
             <div class="parameter">
-                <label for="confidence">Уверенность:</label>
-                <p>Оцените уверенность ученика во время приветствия и знакомства, ответив на следующие вопросы:</p>
-                <ul>
-                    <li>Ученик уверенно представился?</li>
-                    <li>Ученик открыто отвечал на вопросы?</li>
-                    <li>Ученик выглядел нервным или спокойным?</li>
-                </ul>
-                <input type="range" id="confidence" name="confidence" min="1" max="10" value="5">
-                <span id="confidenceValue">5</span>
-            </div>
-            <div class="parameter">
                 <label for="selfPresentation">Навык самопрезентации:</label>
-                <p>Оцените навык самопрезентации ученика, учитывая следующие вопросы:</p>
-                <ul>
-                    <li>Ученик эффективно рассказал о себе?</li>
-                    <li>Поделился ли ученик своими увлечениями и хобби?</li>
-                    <li>Выражал ли ученик свои мысли ясно и понятно?</li>
-                </ul>
+                <p>Насколько эффективно ученик представил себя, включая ясность изложения своих мыслей и рассказ о личных интересах и увлечениях?</p>
                 <input type="range" id="selfPresentation" name="selfPresentation" min="1" max="10" value="5">
-                <span id="selfPresentationValue">5</span>
-            </div>
-
-            <!-- Что такое гибкие навыки? -->
-            <h2>Что такое гибкие навыки?</h2>
-            <div class="parameter">
-                <label for="flexibility">Гибкость мышления:</label>
-                <p>Оцените гибкость мышления ученика, опираясь на следующие вопросы:</p>
-                <ul>
-                    <li>Выбирал ли ученик важные для него гибкие навыки и объяснял, почему они важны?</li>
-                    <li>Предоставлял ли ученик обоснованные причины своего выбора?</li>
-                    <li>Показал ли ученик способность гибко мыслить о значимости различных навыков?</li>
-                </ul>
-                <input type="range" id="flexibility" name="flexibility" min="1" max="10" value="5">
-                <span id="flexibilityValue">5</span>
-            </div>
-            <div class="parameter">
-                <label for="associativeThinking">Уровень ассоциативного мышления:</label>
-                <p>Оцените уровень ассоциативного мышления ученика:</p>
-                <ul>
-                    <li>Мог ли ученик проводить аналогии между разными навыками?</li>
-                    <li>Понимал ли ученик, как различные навыки связаны между собой?</li>
-                    <li>Проявлял ли ученик творческий подход в обсуждении навыков?</li>
-                </ul>
-                <input type="range" id="associativeThinking" name="associativeThinking" min="1" max="10" value="5">
-                <span id="associativeThinkingValue">5</span>
+                <span id="selfPresentationValue">50%</span>
             </div>
 
             <!-- Оценка своих навыков -->
             <h2>Оценка своих навыков</h2>
             <div class="parameter">
-                <label for="selfPresentation2">Навык самопрезентации:</label>
-                <p>Оцените навык самопрезентации ученика при обсуждении своих друзей и социальных взаимодействий:</p>
-                <ul>
-                    <li>Как ученик описывал своих друзей?</li>
-                    <li>Открыто ли ученик рассказывал о своих дружеских отношениях?</li>
-                    <li>Был ли ученик комфортен в обсуждении социальных взаимодействий?</li>
-                </ul>
-                <input type="range" id="selfPresentation2" name="selfPresentation2" min="1" max="10" value="5">
-                <span id="selfPresentation2Value">5</span>
-            </div>
-            <div class="parameter">
-                <label for="confidence2">Уверенность:</label>
-                <p>Оцените уверенность ученика в ходе самооценки своих навыков:</p>
-                <ul>
-                    <li>Ученик уверенно оценивал свои навыки?</li>
-                    <li>Был ли ученик откровенен в своих оценках?</li>
-                    <li>Проявлял ли ученик самокритичность и понимание своих сильных и слабых сторон?</li>
-                </ul>
-                <input type="range" id="confidence2" name="confidence2" min="1" max="10" value="5">
-                <span id="confidence2Value">5</span>
+                <label for="confidence">Уверенность:</label>
+                <p>Насколько уверенно ученик держался на этом и предыдущих этапах?</p>
+                <input type="range" id="confidence" name="confidence" min="1" max="10" value="5">
+                <span id="confidenceValue">50%</span>
             </div>
 
-            <!-- Дверь 1: How do you make friends -->
-            <h2>Дверь 1: How do you make friends</h2>
-            <div class="parameter">
-                <label for="activity">Активность:</label>
-                <p>Оцените активность ученика во время выполнения задания "Мост дружбы":</p>
-                <ul>
-                    <li>Участвовал ли ученик активно в задании?</li>
-                    <li>Проявлял ли инициативу при выборе "кирпичиков" для моста?</li>
-                    <li>Был ли ученик вовлечен в обсуждение значимости каждого качества?</li>
-                </ul>
-                <input type="range" id="activity" name="activity" min="1" max="10" value="5">
-                <span id="activityValue">5</span>
-            </div>
+            <!-- Двери с навыками -->
+            <h2>Двери с навыками</h2>
             <div class="parameter">
                 <label for="observation">Наблюдательность:</label>
-                <p>Оцените наблюдательность ученика в процессе задания:</p>
-                <ul>
-                    <li>Замечал ли ученик детали и особенности каждого качества?</li>
-                    <li>Мог ли ученик подобрать подходящие качества для построения моста?</li>
-                    <li>Обращал ли внимание на негативные качества и понимал их влияние на дружбу?</li>
-                </ul>
+                <p>Как вы оцените наблюдательность ученика: замечал ли он детали качеств, подбирал ли нужные для заданий и понимал ли влияние негативных качеств на дружбу?</p>
                 <input type="range" id="observation" name="observation" min="1" max="10" value="5">
-                <span id="observationValue">5</span>
-            </div>
-
-            <!-- Дверь 2: Conflicts -->
-            <h2>Дверь 2: Conflicts</h2>
-            <div class="parameter">
-                <label for="listening2">Умение слушать других:</label>
-                <p>Оцените умение ученика слушать и понимать других при обсуждении конфликтов:</p>
-                <ul>
-                    <li>Внимательно ли ученик слушал ситуации и вопросы?</li>
-                    <li>Проявлял ли ученик эмпатию к персонажам ситуаций?</li>
-                    <li>Учитывал ли мнения и чувства других при формулировании ответов?</li>
-                </ul>
-                <input type="range" id="listening2" name="listening2" min="1" max="10" value="5">
-                <span id="listening2Value">5</span>
+                <span id="observationValue">50%</span>
             </div>
             <div class="parameter">
-                <label for="flexibility2">Гибкость мышления:</label>
-                <p>Оцените гибкость мышления ученика в решении конфликтных ситуаций:</p>
-                <ul>
-                    <li>Мог ли ученик предложить нестандартные решения для разрешения конфликтов?</li>
-                    <li>Готов ли был ученик рассматривать альтернативные точки зрения?</li>
-                    <li>Проявлял ли способность адаптировать свои ответы в зависимости от ситуации?</li>
-                </ul>
-                <input type="range" id="flexibility2" name="flexibility2" min="1" max="10" value="5">
-                <span id="flexibility2Value">5</span>
-            </div>
-
-            <!-- Дверь 3: Criticism -->
-            <h2>Дверь 3: Criticism</h2>
-            <div class="parameter">
-                <label for="listening3">Умение слушать других:</label>
-                <p>Оцените умение ученика слушать при обсуждении критики и дружеских советов:</p>
-                <ul>
-                    <li>Внимательно ли ученик слушал объяснения разницы между дружеским советом и критикой?</li>
-                    <li>Понимал ли ученик, когда стоит давать советы, а когда нет?</li>
-                    <li>Проявлял ли способность воспринимать информацию и применять ее в заданиях?</li>
-                </ul>
-                <input type="range" id="listening3" name="listening3" min="1" max="10" value="5">
-                <span id="listening3Value">5</span>
+                <label for="listening">Умение слушать других:</label>
+                <p>Как вы оцените умение ученика слушать и понимать других в обсуждении конфликтов: был ли он внимателен, эмпатичен и учитывал ли мнения и чувства других в ответах?</p>
+                <input type="range" id="listening" name="listening" min="1" max="10" value="5">
+                <span id="listeningValue">50%</span>
             </div>
             <div class="parameter">
-                <label for="associativeThinking2">Уровень ассоциативного мышления:</label>
-                <p>Оцените уровень ассоциативного мышления ученика при различении дружеского совета и критики:</p>
-                <ul>
-                    <li>Мог ли ученик проводить параллели между различными ситуациями?</li>
-                    <li>Понимал ли ученик последствия критики и дружеских советов для отношений?</li>
-                    <li>Предлагал ли ученик свои примеры и аналогии?</li>
-                </ul>
-                <input type="range" id="associativeThinking2" name="associativeThinking2" min="1" max="10" value="5">
-                <span id="associativeThinking2Value">5</span>
+                <label for="adaptivity">Адаптивность и креативное мышление:</label>
+                <p>Как вы оцениваете адаптивность и креативное мышление ученика в решении заданий: предлагал ли он нестандартные решения, учитывал ли альтернативные точки зрения и умел ли адаптировать ответы под разные ситуации?</p>
+                <input type="range" id="adaptivity" name="adaptivity" min="1" max="10" value="5">
+                <span id="adaptivityValue">50%</span>
             </div>
 
             <!-- Повторная самооценка навыков -->
             <h2>Повторная самооценка навыков</h2>
             <div class="parameter">
-                <label for="activity2">Активность:</label>
-                <p>Оцените активность ученика во время повторной самооценки навыков:</p>
-                <ul>
-                    <li>Был ли ученик заинтересован в обсуждении изменений своих навыков?</li>
-                    <li>Проявлял ли инициативу в выражении своих мыслей?</li>
-                    <li>Отмечал ли конкретные области прогресса или трудностей?</li>
-                </ul>
-                <input type="range" id="activity2" name="activity2" min="1" max="10" value="5">
-                <span id="activity2Value">5</span>
-            </div>
-            <div class="parameter">
-                <label for="confidence3">Уверенность:</label>
-                <p>Оцените уверенность ученика в оценке своего прогресса:</p>
-                <ul>
-                    <li>Ученик уверенно сравнивал свои оценки до и после урока?</li>
-                    <li>Проявлял ли ученик положительное отношение к своему прогрессу?</li>
-                    <li>Выражал ли желание продолжать развивать свои навыки?</li>
-                </ul>
-                <input type="range" id="confidence3" name="confidence3" min="1" max="10" value="5">
-                <span id="confidence3Value">5</span>
-            </div>
-
-            <!-- Завершение урока + колесо навыков -->
-            <h2>Завершение урока + колесо навыков</h2>
-            <div class="parameter">
-                <label for="flexibility3">Гибкость мышления:</label>
-                <p>Оцените гибкость мышления ученика при обсуждении выпавшего навыка на колесе:</p>
-                <ul>
-                    <li>Мог ли ученик объяснить, как выбранный софт скилл помогает в дружбе?</li>
-                    <li>Приводил ли ученик примеры из своего опыта?</li>
-                    <li>Проявлял ли ученик интерес к различным навыкам и их значению?</li>
-                </ul>
-                <input type="range" id="flexibility3" name="flexibility3" min="1" max="10" value="5">
-                <span id="flexibility3Value">5</span>
+                <label for="activity">Активность:</label>
+                <p>Как вы оцениваете активность ученика во время повторной самооценки и на уроке: был ли он заинтересован в обсуждении изменений, проявлял ли инициативу и отмечал ли конкретные области прогресса или трудностей?</p>
+                <input type="range" id="activity" name="activity" min="1" max="10" value="5">
+                <span id="activityValue">50%</span>
             </div>
 
             <!-- Кнопка "Готово" -->
@@ -399,72 +302,127 @@
     <!-- script.js -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Определяем данные по навыкам
+            const skillData = {
+                "Навык самопрезентации": {
+                    explanations: {
+                        low: "Ребенку пока сложно рассказывать о себе уверенно, он может стесняться и недооценивать свои сильные стороны. Ему необходима поддержка, чтобы чувствовать себя комфортно в этом навыке.",
+                        medium: "Ребенок может рассказывать о себе, но не всегда уверенно и структурированно. Иногда он не раскрывает все свои сильные стороны и нуждается в поддержке для большего прогресса.",
+                        high: "Ребенок уверенно рассказывает о себе, структурированно описывает свои интересы и успехи, демонстрируя хорошие навыки самопрезентации."
+                    },
+                    homeTraining: {
+                        low: "Помогайте ребенку рассказывать о себе, начав с простых вопросов: \"Как прошел твой день?\", \"Что тебе сегодня понравилось?\" Записывайте короткие видео или аудио, где ребенок рассказывает о своих любимых занятиях, поддерживая его уверенность.",
+                        medium: "Попросите ребенка рассказать о себе и своих интересах более подробно. Предложите придумать несколько позитивных черт и достижений, чтобы он привык говорить о себе с уверенностью.",
+                        high: "Стимулируйте ребенка вести небольшой \"дневник достижений\" или записывать ролики о своих увлечениях. Это укрепит уверенность и развивает привычку говорить о своих сильных сторонах."
+                    },
+                    schoolOffering: "Мы создаем безопасное пространство, где ребенок может учиться рассказывать о себе через мини-выступления, ролевые игры и обратную связь от преподавателя. Наши занятия включают упражнения, где ребенок структурировано выражает свои мысли, что помогает развивать уверенность и умение самопрезентации."
+                },
+                "Уверенность": {
+                    explanations: {
+                        low: "Ребенок испытывает значительные трудности с уверенностью, особенно в новых ситуациях или при выражении своего мнения. Ему требуется больше поддержки.",
+                        medium: "Ребенок проявляет некоторую уверенность, но его может смущать новая аудитория, и он не всегда решается выразить своё мнение.",
+                        high: "Ребенок уверен в себе, легко взаимодействует с другими, высказывает свои мысли и мнения в различных ситуациях."
+                    },
+                    homeTraining: {
+                        low: "Поддерживайте ребенка в новых начинаниях, обсуждайте его идеи и давайте позитивную обратную связь. Придумайте \"миссии\" — например, спросить что-то у продавца или рассказать о себе членам семьи.",
+                        medium: "Практикуйте мини-презентации или игры, где ребенку нужно представиться перед семьей или друзьями. Это помогает постепенно развить уверенность.",
+                        high: "Попросите ребенка представлять свои идеи на семейных собраниях или высказываться на общие темы. Это укрепит его способность выражать себя уверенно в разных ситуациях."
+                    },
+                    schoolOffering: "Мы развиваем уверенность ребенка через групповые и индивидуальные задания, создавая условия для открытого выражения мнения. Дети получают возможность высказывать свои идеи и участвовать в дискуссиях, что помогает им почувствовать себя уверенно в группе и не бояться проявить себя."
+                },
+                "Наблюдательность": {
+                    explanations: {
+                        low: "Ребенок не замечает деталей, часто упускает важные мелочи, что может влиять на понимание окружающего.",
+                        medium: "Ребенок замечает некоторые детали, но иногда упускает значимые моменты. Навык наблюдательности нуждается в дополнительной практике.",
+                        high: "Ребенок хорошо замечает детали и тонкости, может быстро обратить внимание на важные аспекты в окружающем."
+                    },
+                    homeTraining: {
+                        low: "Играйте в игры на внимание, такие как \"Найди отличия\" или разбор картинок, просите его находить 5 отличий или замечать изменения в окружающем пространстве.",
+                        medium: "Чаще обсуждайте детали, например, что было в книжке, фильме или на картинке, просите ребенка вспомнить последовательность событий или описать сцену.",
+                        high: "Поддерживайте интерес к анализу деталей в разных ситуациях, предлагайте задачи на внимательность, например, угадать предмет по описанию или сравнивать события."
+                    },
+                    schoolOffering: "Мы стимулируем развитие наблюдательности с помощью заданий, где требуется внимание к деталям и анализ окружающей информации. Практические задания, работа с иллюстрациями и обсуждения помогают детям учиться замечать важные мелочи и воспринимать информацию более полно."
+                },
+                "Умение слушать других": {
+                    explanations: {
+                        low: "Ребенку сложно внимательно слушать других, он часто перебивает, что мешает полному пониманию собеседника.",
+                        medium: "Ребенок способен слушать, но иногда отвлекается или прерывает собеседника, что может влиять на общение.",
+                        high: "Ребенок умеет внимательно слушать, не перебивает, проявляет уважение к словам собеседника и демонстрирует хорошие коммуникативные навыки."
+                    },
+                    homeTraining: {
+                        low: "Играйте в игры на активное слушание, например, \"Телефон\", где нужно точно передать сообщение, или простые вопросы, требующие повторения услышанного.",
+                        medium: "Просите ребенка слушать вас, не перебивая, и затем пересказывать основные моменты. Это учит его терпению и вниманию.",
+                        high: "Обсуждайте с ребенком интересные темы, задавайте уточняющие вопросы, чтобы он мог еще больше развивать свои навыки слушания и понимания собеседника."
+                    },
+                    schoolOffering: "На наших занятиях мы проводим дискуссии и обсуждения, в которых каждый ребенок может выразить свою точку зрения и научиться внимательно слушать других. Мы используем игры и упражнения на активное слушание, что помогает детям лучше понимать собеседника и строить уважительные диалоги."
+                },
+                "Адаптивность и креативное мышление": {
+                    explanations: {
+                        low: "Ребенку сложно адаптироваться к новым задачам или ситуациям, он предпочитает придерживаться привычных решений.",
+                        medium: "Ребенок старается менять подход, но иногда испытывает затруднения, когда требуется креативность или адаптация.",
+                        high: "Ребенок легко адаптируется к изменениям, охотно ищет новые решения и проявляет креативное мышление в разных ситуациях."
+                    },
+                    homeTraining: {
+                        low: "Вводите ребенка в игры, где нужно менять стратегию. Например, задавайте вопросы, требующие поиска нестандартных ответов, обсуждайте разные подходы к задачам.",
+                        medium: "Предложите ребенку решать задачи, где нужно находить альтернативные решения. Например, играйте в головоломки, которые требуют креативного подхода.",
+                        high: "Давайте ребенку задания на решение задач, где нужно проявить гибкость. Поддерживайте интерес к креативному мышлению, обсуждая необычные идеи и поощряя поиск новых решений."
+                    },
+                    schoolOffering: "Мы развиваем у детей гибкость мышления и креативность, вовлекая их в проектные задания, где необходимо находить нестандартные решения. Это могут быть групповые задачи, требующие поиска разных подходов, что позволяет ребенку адаптироваться к изменениям и развивать творческий подход."
+                },
+                "Активность": {
+                    explanations: {
+                        low: "Ребенок проявляет низкий уровень активности, редко включается в задания и требует постоянного стимулирования.",
+                        medium: "Ребенок проявляет активность, но не всегда устойчивую, иногда ему требуется напоминание для продолжения работы.",
+                        high: "Ребенок активно включается в задания, легко берет на себя инициативу и часто проявляет энтузиазм."
+                    },
+                    homeTraining: {
+                        low: "Пробуйте вовлекать ребенка в активные и веселые задачи, такие как создание поделок, участие в настольных играх или выполнение простых домашних поручений. Старайтесь поощрять инициативу.",
+                        medium: "Стимулируйте ребенка брать инициативу, предлагайте ему самостоятельно выбрать занятия или задания, интересные для него. Можно играть в \"ведущего\", где ребенок руководит процессом.",
+                        high: "Поддерживайте интерес ребенка к самостоятельным проектам — предлагайте ему придумать и реализовать свои небольшие проекты, будь то создание мини-квеста, эксперимент или организация семейного мероприятия."
+                    },
+                    schoolOffering: "В нашей школе мы поощряем активное участие ребенка в занятиях, поддерживаем инициативу и самостоятельность. Через игровые задания, ролевые ситуации и проекты дети учатся проявлять себя, брать на себя ответственность и активно включаться в учебный процесс."
+                }
+            };
+
             // Обработчик для ползунков
             const sliders = document.querySelectorAll("input[type='range']");
             sliders.forEach(slider => {
                 slider.addEventListener("input", function () {
-                    document.getElementById(slider.id + "Value").textContent = slider.value;
+                    const percentage = slider.value * 10;
+                    document.getElementById(slider.id + "Value").textContent = percentage + "%";
                 });
             });
 
             // Обработчик для кнопки "Готово"
             document.getElementById("submitButton").addEventListener("click", function () {
-                const studentName = document.getElementById("studentName").value;
-                const studentAge = document.getElementById("studentAge").value;
+                const studentName = document.getElementById("studentName").value.trim();
+                const studentAge = document.getElementById("studentAge").value.trim();
                 const currentDate = new Date().toLocaleDateString();
+
+                // Проверка заполнения полей
+                if (!studentName || !studentAge) {
+                    alert("Пожалуйста, заполните все поля.");
+                    return;
+                }
 
                 // Собираем результаты
                 const results = {
                     "Имя ученика": studentName,
                     "Возраст ученика": studentAge,
                     "Дата занятия": currentDate,
-                    "Уверенность": [
-                        parseInt(document.getElementById("confidence").value),
-                        parseInt(document.getElementById("confidence2").value),
-                        parseInt(document.getElementById("confidence3").value)
-                    ],
-                    "Навык самопрезентации": [
-                        parseInt(document.getElementById("selfPresentation").value),
-                        parseInt(document.getElementById("selfPresentation2").value)
-                    ],
-                    "Умение слушать других": [
-                        parseInt(document.getElementById("listening2").value),
-                        parseInt(document.getElementById("listening3").value)
-                    ],
-                    "Уровень ассоциативного мышления": [
-                        parseInt(document.getElementById("associativeThinking").value),
-                        parseInt(document.getElementById("associativeThinking2").value)
-                    ],
-                    "Наблюдательность": [
-                        parseInt(document.getElementById("observation").value)
-                    ],
-                    "Гибкость мышления": [
-                        parseInt(document.getElementById("flexibility").value),
-                        parseInt(document.getElementById("flexibility2").value),
-                        parseInt(document.getElementById("flexibility3").value)
-                    ],
-                    "Активность": [
-                        parseInt(document.getElementById("activity").value),
-                        parseInt(document.getElementById("activity2").value)
-                    ]
+                    "Навык самопрезентации": parseInt(document.getElementById("selfPresentation").value) * 10,
+                    "Уверенность": parseInt(document.getElementById("confidence").value) * 10,
+                    "Наблюдательность": parseInt(document.getElementById("observation").value) * 10,
+                    "Умение слушать других": parseInt(document.getElementById("listening").value) * 10,
+                    "Адаптивность и креативное мышление": parseInt(document.getElementById("adaptivity").value) * 10,
+                    "Активность": parseInt(document.getElementById("activity").value) * 10
                 };
-
-                const averages = {};
-                for (let key in results) {
-                    if (Array.isArray(results[key])) {
-                        const sum = results[key].reduce((a, b) => a + b, 0);
-                        const avg = Math.round((sum / results[key].length) * 10);
-                        averages[key] = avg;
-                    } else {
-                        averages[key] = results[key];
-                    }
-                }
 
                 // Генерируем HTML для краткой сводки навыков
                 let summaryRows = '';
-                for (let key in averages) {
+                for (let key in results) {
                     if (key !== "Имя ученика" && key !== "Возраст ученика" && key !== "Дата занятия") {
-                        const value = averages[key];
+                        const value = results[key];
                         let sliderClass = '';
                         if (value < 50) {
                             sliderClass = 'slider-low';
@@ -485,6 +443,49 @@
                     }
                 }
 
+                // Функция для генерации строки таблицы навыков
+                function generateSkillRow(skillName, skillValue) {
+                    let explanation = "";
+                    let homeTraining = "";
+
+                    if (skillValue < 50) {
+                        explanation = skillData[skillName].explanations.low;
+                        homeTraining = skillData[skillName].homeTraining.low;
+                    } else if (skillValue < 75) {
+                        explanation = skillData[skillName].explanations.medium;
+                        homeTraining = skillData[skillName].homeTraining.medium;
+                    } else {
+                        explanation = skillData[skillName].explanations.high;
+                        homeTraining = skillData[skillName].homeTraining.high;
+                    }
+
+                    const schoolOffering = skillData[skillName].schoolOffering;
+
+                    let colorClass = skillValue < 50 ? 'low' : skillValue < 75 ? 'medium' : 'high';
+                    return `
+                        <tr>
+                            <td>${skillName}</td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill ${colorClass}" style="width: ${skillValue}%;"></div>
+                                </div>
+                                ${skillValue}%
+                            </td>
+                            <td>${explanation}</td>
+                            <td>${homeTraining}</td>
+                            <td>${schoolOffering}</td>
+                        </tr>
+                    `;
+                }
+
+                // Генерируем подробную таблицу навыков
+                let detailedRows = '';
+                for (let key in results) {
+                    if (key !== "Имя ученика" && key !== "Возраст ученика" && key !== "Дата занятия") {
+                        detailedRows += generateSkillRow(key, results[key]);
+                    }
+                }
+
                 // Генерируем страницу с результатами
                 let resultPage = `
                     <!DOCTYPE html>
@@ -493,17 +494,155 @@
                         <meta charset="UTF-8">
                         <title>Результаты оценки</title>
                         <style>
-                            /* Стили такие же, как и в основной странице */
-                            ${document.querySelector('style').innerHTML}
+                            /* Стили перенесены из основного документа */
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #f4f4f4;
+                                margin: 0;
+                                padding: 0;
+                                display: flex;
+                                justify-content: center;
+                                align-items: flex-start;
+                                padding-top: 50px;
+                                min-height: 100vh;
+                            }
+                            .container {
+                                background-color: #fff;
+                                padding: 40px;
+                                border-radius: 10px;
+                                border: 2px solid #5988ff;
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                width: 90%;
+                                max-width: 1200px;
+                                margin-bottom: 50px;
+                            }
+                            h1 {
+                                text-align: center;
+                                margin-bottom: 20px;
+                                color: #5988ff;
+                            }
+                            .info {
+                                margin-bottom: 20px;
+                                background-color: #d6ff6b;
+                                padding: 15px;
+                                border-radius: 5px;
+                            }
+                            .info p {
+                                margin: 5px 0;
+                            }
+                            .logo {
+                                text-align: center;
+                                margin-bottom: 20px;
+                            }
+                            .logo img {
+                                max-width: 200px;
+                            }
+                            .summary-table, .table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-top: 20px;
+                            }
+                            .summary-table th, .summary-table td, .table th, .table td {
+                                border: 1px solid #ddd;
+                                padding: 10px;
+                                text-align: left;
+                                vertical-align: top;
+                            }
+                            .summary-table th, .table th {
+                                background-color: #5988ff;
+                                color: white;
+                            }
+                            .summary-slider {
+                                width: 100%;
+                                -webkit-appearance: none;
+                                appearance: none;
+                                height: 8px;
+                                margin-top: 10px;
+                                background-color: #f0f0f0;
+                                border-radius: 5px;
+                                position: relative;
+                            }
+                            .summary-slider::-webkit-slider-thumb {
+                                -webkit-appearance: none;
+                                appearance: none;
+                                width: 16px;
+                                height: 16px;
+                                border-radius: 50%;
+                                background-color: #ffffff;
+                                border: 2px solid #5988ff;
+                                cursor: pointer;
+                                position: relative;
+                                z-index: 1;
+                            }
+                            .summary-slider::-moz-range-thumb {
+                                width: 16px;
+                                height: 16px;
+                                border-radius: 50%;
+                                background-color: #ffffff;
+                                border: 2px solid #5988ff;
+                                cursor: pointer;
+                                position: relative;
+                                z-index: 1;
+                            }
+                            /* Цветовая заливка для слайдера */
+                            .summary-slider.slider-low {
+                                background: linear-gradient(to right, #ff6f61 0%, #ff6f61 var(--value), #f0f0f0 var(--value), #f0f0f0 100%);
+                            }
+                            .summary-slider.slider-medium {
+                                background: linear-gradient(to right, #ffeb3b 0%, #ffeb3b var(--value), #f0f0f0 var(--value), #f0f0f0 100%);
+                            }
+                            .summary-slider.slider-high {
+                                background: linear-gradient(to right, #81c784 0%, #81c784 var(--value), #f0f0f0 var(--value), #f0f0f0 100%);
+                            }
+                            .progress-bar {
+                                height: 20px;
+                                border-radius: 5px;
+                                background-color: #f0f0f0;
+                                /* position: relative; */ /* Удалено */
+                                margin-bottom: 5px;
+                                overflow: hidden; /* Добавлено для предотвращения выхода заполнения за пределы */
+                            }
+                            .progress-fill {
+                                height: 100%;
+                                border-radius: 5px;
+                                /* position: absolute; */ /* Удалено */
+                                width: 0%; /* Установлено по умолчанию */
+                                transition: width 0.5s ease; /* Плавное изменение ширины */
+                            }
+                            .progress-fill.low {
+                                background-color: #ff6f61;
+                            }
+                            .progress-fill.medium {
+                                background-color: #ffeb3b;
+                            }
+                            .progress-fill.high {
+                                background-color: #81c784;
+                            }
+                            @media (max-width: 768px) {
+                                .container {
+                                    padding: 20px;
+                                    width: 95%;
+                                }
+                                .summary-slider {
+                                    height: 6px;
+                                }
+                                .progress-bar {
+                                    height: 15px;
+                                }
+                            }
                         </style>
                     </head>
                     <body>
                         <div class="container">
+                            <!-- Логотип -->
+                            <div class="logo">
+                                <img src="https://767416.selcdn.ru/production_kodland_main_public/task_description_materials/3936703d-2c80-43e0-b60c-cdd41464393e.png" alt="Логотип компании">
+                            </div>
                             <h1>Диагностика</h1>
                             <div class="info">
-                                <p><strong>Имя ученика:</strong> ${averages["Имя ученика"]}</p>
-                                <p><strong>Возраст ученика:</strong> ${averages["Возраст ученика"]}</p>
-                                <p><strong>Дата занятия:</strong> ${averages["Дата занятия"]}</p>
+                                <p><strong>Имя ученика:</strong> ${results["Имя ученика"]}</p>
+                                <p><strong>Возраст ученика:</strong> ${results["Возраст ученика"]}</p>
+                                <p><strong>Дата занятия:</strong> ${results["Дата занятия"]}</p>
                             </div>
                             <!-- Краткая сводка навыков -->
                             <h2>Сводка навыков</h2>
@@ -511,7 +650,7 @@
                                 <thead>
                                     <tr>
                                         <th>Навык</th>
-                                        <th>Уровень развития</th>
+                                        <th>Процент выполнения</th>
                                         <th>Оценка</th>
                                     </tr>
                                 </thead>
@@ -520,6 +659,7 @@
                                 </tbody>
                             </table>
                             <!-- Подробная таблица навыков -->
+                            <h2>Детализированный отчет</h2>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -531,13 +671,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ${generateSkillRow("Уверенность", averages["Уверенность"], getSkillExplanation("Уверенность", averages["Уверенность"]), "Практикуйте обсуждение успехов и достижений ребенка, подбадривайте его. Чаще подбадривайте ребенка и создавайте ситуации, в которых он может постепенно укреплять уверенность. Поддерживайте ребенка в его начинаниях и инициативах, мотивируйте его на более сложные задачи.", "Мы создаем дружелюбную атмосферу, чтобы ребенок чувствовал себя уверенно. Мы делаем акцент на поощрении и поддержке. Мы развиваем уверенность через групповую работу и публичные выступления в команде. Мы создаем условия для развития лидерских качеств через выступления перед классом и проектные работы.")}
-                                    ${generateSkillRow("Навык самопрезентации", averages["Навык самопрезентации"], getSkillExplanation("Навык самопрезентации", averages["Навык самопрезентации"]), "Практикуйте простые самоописания — попросите ребенка рассказать о себе. Пусть ребенок участвует в совместных мероприятиях, чтобы он привык рассказывать о себе. Включайте ребенка в дискуссии, пусть он сам выбирает темы для обсуждений.", "В нашей онлайн-школе ученики регулярно работают над рассказами о себе на уроках, что помогает развивать этот навык. Мы организуем небольшие выступления в классе. Мы даем детям возможность представлять проекты и работаем над построением уверенного рассказа.")}
-                                    ${generateSkillRow("Умение слушать других", averages["Умение слушать других"], getSkillExplanation("Умение слушать других", averages["Умение слушать других"]), "Практикуйте простые игры на активное слушание — попросите ребенка пересказать услышанное. Читайте вместе книги и обсуждайте содержание, задавайте ребенку вопросы по тексту. Поддерживайте интерес к общению, приглашайте других детей в гости.", "На уроках дети работают в парах и группах, где важен навык слушания. Мы предлагаем групповые задания, где ребенок учится слушать и взаимодействовать с товарищами. Мы проводим дискуссии, где каждый ребенок имеет возможность выразить свою точку зрения.")}
-                                    ${generateSkillRow("Уровень ассоциативного мышления", averages["Уровень ассоциативного мышления"], getSkillExplanation("Уровень ассоциативного мышления", averages["Уровень ассоциативного мышления"]), "Практикуйте совместное решение простых логических задач. Задавайте ребенку вопросы, требующие нестандартного мышления. Стимулируйте ребенка искать аналогии в повседневных ситуациях.", "На уроках мы используем упражнения на нахождение связей между объектами и идеями. Мы организуем групповые игры и задачи, где ребенок должен использовать ассоциативное мышление. Мы развиваем ассоциативное мышление через проектную работу и задания на поиск неожиданных решений.")}
-                                    ${generateSkillRow("Наблюдательность", averages["Наблюдательность"], getSkillExplanation("Наблюдательность", averages["Наблюдательность"]), "Играйте с ребенком в игры, требующие внимания к деталям. Задавайте вопросы на внимательность после просмотра мультфильмов или чтения книг. Хвалите ребенка за его наблюдательность и замечания.", "Мы используем упражнения на развитие внимания. На наших занятиях дети учатся внимательно анализировать окружающую обстановку. Мы стимулируем развитие наблюдательности через групповые проекты и задания.")}
-                                    ${generateSkillRow("Гибкость мышления", averages["Гибкость мышления"], getSkillExplanation("Гибкость мышления", averages["Гибкость мышления"]), "Задавайте ребенку вопросы, требующие поиска нестандартных решений. Разбирайте ситуации, где важно адаптироваться и менять подход. Играйте в игры на развитие логики и вариативного мышления.", "Мы развиваем гибкость мышления через задания с открытым финалом, где каждый ребенок должен предложить свое решение. Мы используем проектную работу и групповые обсуждения, чтобы стимулировать разные подходы к решению задач.")}
-                                    ${generateSkillRow("Активность", averages["Активность"], getSkillExplanation("Активность", averages["Активность"]), "Поддерживайте интерес ребенка к различным видам активности — будь то спорт, творчество или учебные занятия. Создавайте возможности для участия в совместных проектах и играх.", "Ученики нашей школы активно участвуют в интерактивных занятиях. Мы предлагаем групповые проекты и игровые активности, где каждый ребенок может проявить инициативу и участвовать в общей работе.")}
+                                    ${detailedRows}
                                 </tbody>
                             </table>
                         </div>
@@ -546,99 +680,9 @@
                 `;
                 const newWindow = window.open();
                 newWindow.document.write(resultPage);
+                newWindow.document.close();
             });
         });
-
-        function generateSkillRow(skillName, skillValue, skillExplanation, homeTraining, schoolOffering) {
-            let colorClass = skillValue < 50 ? 'low' : skillValue < 75 ? 'medium' : 'high';
-            return `
-                <tr>
-                    <td>${skillName}</td>
-                    <td>
-                        <div class="progress-bar">
-                            <div class="progress-fill ${colorClass}" style="width: ${skillValue}%;"></div>
-                        </div>
-                        ${skillValue}%
-                    </td>
-                    <td>${skillExplanation}</td>
-                    <td>${homeTraining}</td>
-                    <td>${schoolOffering}</td>
-                </tr>
-            `;
-        }
-
-        function getSkillExplanation(skillName, skillValue) {
-            if (skillValue < 50) {
-                return getLowSkillExplanation(skillName);
-            } else if (skillValue < 75) {
-                return getMediumSkillExplanation(skillName);
-            } else {
-                return getHighSkillExplanation(skillName);
-            }
-        }
-
-        function getLowSkillExplanation(skillName) {
-            switch (skillName) {
-                case "Уверенность":
-                    return "Ребенок испытывает значительные трудности с уверенностью, избегает новых ситуаций, часто нервничает и боится высказать свою точку зрения.";
-                case "Навык самопрезентации":
-                    return "Ребенок не умеет говорить о себе, чувствует дискомфорт в незнакомой компании.";
-                case "Умение слушать других":
-                    return "Ребенок часто перебивает собеседников, не обращает внимания на мнение других.";
-                case "Уровень ассоциативного мышления":
-                    return "Ребенок затрудняется видеть связи между идеями, не может использовать аналогии.";
-                case "Наблюдательность":
-                    return "Ребенок не замечает деталей, испытывает сложности с концентрацией и выделением важных аспектов.";
-                case "Гибкость мышления":
-                    return "Ребенку сложно менять подход, он предпочитает шаблонные решения и избегает ситуаций, где требуется адаптация.";
-                case "Активность":
-                    return "Ребенок проявляет недостаточную активность, избегает участия в новых видах деятельности и предпочитает пассивные занятия.";
-                default:
-                    return "";
-            }
-        }
-
-        function getMediumSkillExplanation(skillName) {
-            switch (skillName) {
-                case "Уверенность":
-                    return "Ребенок временами испытывает неуверенность, особенно в новых ситуациях, но при поддержке взрослых показывает прогресс.";
-                case "Навык самопрезентации":
-                    return "Ребенок может говорить о себе, но часто стесняется и не проявляет инициативы.";
-                case "Умение слушать других":
-                    return "Ребенок может выслушивать других, но иногда отвлекается или перебивает.";
-                case "Уровень ассоциативного мышления":
-                    return "Ребенок может делать простые выводы и находить аналогии, но при этом часто требуется помощь взрослого.";
-                case "Наблюдательность":
-                    return "Ребенок замечает некоторые детали, но не всегда обращает внимание на важные мелочи.";
-                case "Гибкость мышления":
-                    return "Ребенок может менять подход, но часто предпочитает следовать привычным решениям и избегает неопределенности.";
-                case "Активность":
-                    return "Ребенок временами проявляет активность, но часто нуждается в поддержке и поощрении для участия в новых задачах.";
-                default:
-                    return "";
-            }
-        }
-
-        function getHighSkillExplanation(skillName) {
-            switch (skillName) {
-                case "Уверенность":
-                    return "Ребенок уверенно общается, готов высказывать свои мысли и не боится ошибок.";
-                case "Навык самопрезентации":
-                    return "Ребенок умеет рассказывать о себе, легко заводит новых друзей, проявляет активность.";
-                case "Умение слушать других":
-                    return "Ребенок внимательно выслушивает других, уважает их мнение и готов к диалогу.";
-                case "Уровень ассоциативного мышления":
-                    return "Ребенок легко находит связи между идеями, хорошо использует аналогии и нестандартные решения.";
-                case "Наблюдательность":
-                    return "Ребенок замечает важные детали, способен выделить основное и применить наблюдения для решения задач.";
-                case "Гибкость мышления":
-                    return "Ребенок легко адаптируется к новым ситуациям, умеет менять подход и использовать нестандартные решения.";
-                case "Активность":
-                    return "Ребенок активно участвует в занятиях, проявляет инициативу и интерес к новым видам деятельности.";
-                default:
-                    return "";
-            }
-        }
     </script>
 </body>
 </html>
